@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run bsezgun/react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "React-Test"
+  env: "ReactTest-env"
+  bucket_name: "elasticbeanstalk-us-west-2-978279801630"
+  bucket_path: "React-Test"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
